@@ -21,23 +21,23 @@
 
 ## products テーブル
 
-| Column          | Type       | Options     |
-| --------------- | ---------- | ----------- |
-| product_name    | string       | null: false |
-| description     | text       | null: false |
-| category        | string     | null: false |
-| product_status  | string     | null: false |
-| shipping_burden | string     | null: false |
-| shipment_source | string     | null: false |
-| shipping_days   | string     | null: false |
-| price           | integer    | null: false |
-| user            | references | ----------- |
+| Column          | Type       | Options           |
+| --------------- | ---------- | ----------------- |
+| product_name    | string     | null: false       |
+| description     | text       | null: false       |
+| category        | integer    | null: false       |
+| product_status  | integer    | null: false       |
+| shipping_burden | integer    | null: false       |
+| shipment_source | integer    | null: false       |
+| shipping_days   | integer    | null: false       |
+| price           | integer    | null: false       |
+| user            | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_many   :comments
-- has_one    :purchases
+- has_one    :purchase
 
 ## purchases テーブル
 
