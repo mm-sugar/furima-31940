@@ -41,36 +41,21 @@
 
 ## purchases テーブル
 
-| Column           | Type       | Options     |
-| ---------------- | ---------- | ----------- |
-| card_num         | integer    | null: false |
-| expiration_month | integer    | null: false |
-| expiration_year  | integer    | null: false |
-| security_code    | integer    | null: false |
-| user             | references | ----------- |
-| product          | references | ----------- |
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ----------------- |
+| post_code        | string     | null: false       |
+| prefecture       | integer    | null: false       |
+| city             | string     | null: false       |
+| house_num        | string     | null: false       |
+| building_name    | string     | ----------------- |
+| phone_num        | string     | null: false       |
+| user             | references | foreign_key: true |
+| product          | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :products
-- has_one    :address
-
-## addresses テーブル
-
-| Column           | Type       | Options     |
-| ---------------- | ---------- | ----------- |
-| post_code        | integer    | null: false |
-| prefecture       | string     | null: false |
-| city             | string     | null: false |
-| house_num        | string     | null: false |
-| building_name    | string     | ----------- |
-| phone_num        | integer    | null: false |
-| purchase         | references | ----------- |
-
-### Association
-
-- belongs_to :purchases
+- belongs_to :user
+- belongs_to :product
 
 ## comments テーブル
 
