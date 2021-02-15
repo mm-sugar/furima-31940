@@ -59,13 +59,13 @@
 
 ## comments テーブル
 
-| Column    | Type       | Options     |
-| --------- | ---------- | ----------- |
-| text      | text       | null: false |
-| user      | references | ----------- |
-| product   | references | ----------- |
+| Column    | Type       | Options           |
+| --------- | ---------- | ----------------- |
+| text      | text       | null: false       |
+| user      | references | foreign_key: true |
+| product   | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :products
+- belongs_to :user
+- belongs_to :product
