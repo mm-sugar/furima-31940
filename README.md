@@ -41,21 +41,32 @@
 
 ## purchases テーブル
 
-| Column           | Type       | Options           |
-| ---------------- | ---------- | ----------------- |
-| post_code        | string     | null: false       |
-| prefecture       | integer    | null: false       |
-| city             | string     | null: false       |
-| house_num        | string     | null: false       |
-| building_name    | string     | ----------------- |
-| phone_num        | string     | null: false       |
-| user             | references | foreign_key: true |
-| product          | references | foreign_key: true |
+| Column     | Type       | Options           |
+| ---------- | ---------- | ----------------- |
+| user_id    | references | foreign_key: true |
+| product_id | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :product
+- has_one    :address
+
+## addresses
+
+ Column         | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| post_code     | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| house_num     | string     | null: false       |
+| building_name | string     | ----------------- |
+| phone_num     | string     | null: false       |
+| purchase_id   | references | foreign_key: true |
+
+### Association
+
+- belongs_to :purchase
 
 ## comments テーブル
 
