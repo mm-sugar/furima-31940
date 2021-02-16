@@ -21,17 +21,17 @@
 
 ## products テーブル
 
-| Column          | Type       | Options           |
-| --------------- | ---------- | ----------------- |
-| product_name    | string     | null: false       |
-| description     | text       | null: false       |
-| category        | integer    | null: false       |
-| product_status  | integer    | null: false       |
-| shipping_burden | integer    | null: false       |
-| shipment_source | integer    | null: false       |
-| shipping_days   | integer    | null: false       |
-| price           | integer    | null: false       |
-| user            | references | foreign_key: true |
+| Column             | Type       | Options           |
+| ------------------ | ---------- | ----------------- |
+| product_name       | string     | null: false       |
+| description        | text       | null: false       |
+| category_id        | integer    | null: false       |
+| product_status_id  | integer    | null: false       |
+| shipping_burden_id | integer    | null: false       |
+| shipment_source_id | integer    | null: false       |
+| shipping_days_id   | integer    | null: false       |
+| price              | integer    | null: false       |
+| user               | references | foreign_key: true |
 
 ### Association
 
