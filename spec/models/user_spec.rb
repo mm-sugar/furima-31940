@@ -61,22 +61,44 @@ RSpec.describe User, type: :model do
 
 
     it 'passwordが6文字以上であれば登録できること' do
-      @user.password = '123456'
-      @user.password_confirmation = '123456'
+      @user.password = 'a1234567'
+      @user.password_confirmation = 'a1234567'
       expect(@user).to be_valid
     end
 
     it 'passwordが5文字以下であれば登録できないこと' do
-      @user.password = '12345'
-      @user.password_confirmation = '12345'
+      @user.password = 'a1234'
+      @user.password_confirmation = 'a1234'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
 
     end
 
-    it 'passwordとpassword_confirmationが不一致では登録できないこと' do
+    it '英文字のみでは登録できないこと' do
+      @user.password = 'asdfgh'
+      @user.password_confirmation = 'asdfgh'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+
+    end
+
+    it '数字のみでは登録できないこと' do
       @user.password = '123456'
-      @user.password_confirmation = '1234567'
+      @user.password_confirmation = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
+    it '全角では登録できない' do
+      @user.password = 'ＡＢＣ１２３'
+      @user.password_confirmation = 'ＡＢＣ１２３'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
+    it 'passwordとpassword_confirmationが不一致では登録できないこと' do
+      @user.password = 'a123456'
+      @user.password_confirmation = 'b123456'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
@@ -87,6 +109,12 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user, email: @user.email)
       another_user.valid?
       expect(another_user.errors.full_messages).to include("Email has already been taken")
+    end
+
+    it '@が含まれていなければ登録できないこと' do
+      @user.email = '1234test.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
 
