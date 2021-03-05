@@ -14,10 +14,11 @@ class Item < ApplicationRecord
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
-    validates :product_status
-    validates :shipping_burden
-    validates :prefecture
-    validates :shipping_days
+    validates :product_status_id
+    validates :shipping_burden_id
+    validates :prefecture_id
+    validates :shipping_days_id
+    validates :price, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
 
@@ -29,5 +30,6 @@ class Item < ApplicationRecord
     validates :shipping_burden_id
     validates :prefecture_id
     validates :shipping_days_id
+    validates :image
   end
 end
