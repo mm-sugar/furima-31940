@@ -8,11 +8,6 @@ class Item < ApplicationRecord
     validates :image
     validates :name, length: {maximum: 40}
     validates :description, length: {maximum: 1000}
-    validates :category_id
-    validates :product_status_id
-    validates :shipping_burden_id
-    validates :prefecture_id
-    validates :shipping_days_id
     validates :price, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
