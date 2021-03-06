@@ -86,31 +86,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが1では登録できないこと' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'product_status_idが1では登録できないこと' do
-        @item.product_status_id = '1'
+        @item.product_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Product status can't be blank")
       end
 
       it 'shipping_burden_idが1では登録できないこと' do
-        @item.shipping_burden_id = '1'
+        @item.shipping_burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping burden can't be blank")
       end
 
       it 'prefecture_idが1では登録できないこと' do
-        @item.prefecture_id = '1'
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include( "Prefecture can't be blank")
       end
 
       it 'shipping_days_idが1では登録できないこと' do
-        @item.shipping_days_id = ''
+        @item.shipping_days_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping days can't be blank")
       end
