@@ -15,11 +15,11 @@
 
 ### Association
 
-- has_many :products
+- has_many :items
 - has_many :purchases
 - has_many :comments
 
-## products テーブル
+## items テーブル
 
 | Column             | Type       | Options           |
 | ------------------ | ---------- | ----------------- |
@@ -44,12 +44,12 @@
 | Column  | Type       | Options           |
 | ------- | ---------- | ----------------- |
 | user    | references | foreign_key: true |
-| product | references | foreign_key: true |
+| item    | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 - has_one    :address
 
 ## addresses
@@ -74,9 +74,9 @@
 | --------- | ---------- | ----------------- |
 | text      | text       | null: false       |
 | user      | references | foreign_key: true |
-| product   | references | foreign_key: true |
+| item      | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
