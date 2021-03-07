@@ -11,13 +11,12 @@ class Item < ApplicationRecord
     validates :price, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
-  extend ActiveHash::Associations::ActiveRecordExtensions do
+  extend ActiveHash::Associations::ActiveRecordExtensions 
     belongs_to :category
     belongs_to :product_status
     belongs_to :shipping_burden
     belongs_to :prefecture
     belongs_to :shipping_days
-  end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
