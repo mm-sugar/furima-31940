@@ -49,9 +49,8 @@ class ItemsController < ApplicationController
   end
 
   def block_item
-    unless @item.user_id == current_user.id
-      redirect_to action: :index
-    end
+    if @item.purchase.present? || @item.user_id == current_user.id
+      redirect_to root_path
   end
   
 end
