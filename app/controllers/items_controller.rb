@@ -51,6 +51,7 @@ class ItemsController < ApplicationController
   def block_item
     if @item.purchase.present? || @item.user_id == current_user.id
       redirect_to root_path
+    end
   end
   
 end
