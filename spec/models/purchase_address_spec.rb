@@ -89,7 +89,6 @@ RSpec.describe PurchaseAddress, type: :model do
 
       it 'user_idが空では保存ができないこと' do
         @purchase.user_id = ""
-        binding.pry
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("User can't be blank")
       end
