@@ -2,12 +2,20 @@ require 'rails_helper'
 
 RSpec.describe PurchaseAddress, type: :model do
   before do
-    @purchase = FactoryBot.build(:purchase_address)
+    @user =FactoryBot.create(:user)
+    @item =FactoryBot.create(:item)
+    sleep 0.5
+    @purchase = FactoryBot.build(:purchase_address, item_id:@item.id, user_id:@user.id)
   end
 
   describe '商品の購入' do
     context '商品が購入ができる時' do
       it '全ての値が正しく入力されていれば保存できること' do
+        expect(@purchase).to be_valid
+      end
+
+      it 'building_nameが空でも保存ができること' do
+        @purchase.building_name = ""
         expect(@purchase).to be_valid
       end
     end
@@ -67,10 +75,29 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase.errors.full_messages).to include("Phone num Input only number")
       end
 
-      it 'phonde_numは11桁以上では保存ができないこと' do
+      it 'phone_numは11桁以上では保存ができないこと' do
         @purchase.phone_num = "090123456789"
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone num Input only number")
+      end
+
+      it 'phone_numは英数字混合では保存ができないこと' do
+        @purchase.phone_num = "09012345678a"
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone num Input only number")
+      end
+
+      it 'user_idが空では保存ができないこと' do
+        @purchase.user_id = ""
+        binding.pry
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では保存ができないこと' do
+        @purchase.item_id = ""
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
